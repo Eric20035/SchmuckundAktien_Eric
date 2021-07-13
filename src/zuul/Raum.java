@@ -34,7 +34,7 @@ public class Raum
     }
 
 
-private  Raum getAusgang(String richtung) {
+public  Raum getAusgang(String richtung) {
 
     if (richtung.equals("north")){
         return nordausgang;
@@ -54,6 +54,7 @@ private  Raum getAusgang(String richtung) {
     if (richtung.equals("down")){
         return downtreppe;
     }
+    return null;
 }
 
     /**
@@ -86,9 +87,28 @@ private  Raum getAusgang(String richtung) {
             downtreppe = down;
     }
 
-    private String ausgaengeToString(){
-       Raum r =Raum.this.getAusgang();
-        System.out.println("Du kannst nach  "+r + "laufen");
+    public String ausgaengeToString() {
+        String ausgaenge="";
+        if(norden != null) {
+            ausgaenge=ausgaenge+"north";
+        }
+        if(osten != null) {
+            System.out.println("east");
+        }
+        if(sueden != null) {
+            System.out.println("south");
+        }
+        if(westen != null) {
+            System.out.println("west");
+        }
+        if(up != null) {
+            System.out.println("up");
+        }
+        if(down != null) {
+            System.out.println("down");
+        }
+
+
     }
 
 

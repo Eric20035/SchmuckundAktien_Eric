@@ -37,18 +37,18 @@ public class Spiel
      */
     private void raeumeAnlegen()
     {
-        Raum lichtung, waldstueck, taverne, hexenhaus, dorfplatz, gaestezimmer, keller, geheimgang, piratenhöhle;
+         Raum lichtung, waldstueck, taverne, hexenhaus, dorfplatz, gaestezimmer, keller, geheimgang, piratenhöhle;
       
         // die Raeume erzeugen
-        lichtung = new Raum("auf einer Lichtung, umgeben von dunklen Tannen");
-        waldstueck = new Raum("im dunklen Wald");
-        taverne = new Raum("in der Taverne, mit zwielichtigen Gestalten an der Theke");
-        hexenhaus = new Raum("im Hexenhaus");
-        dorfplatz = new Raum("auf dem Dorfplatz");
-        gaestezimmer= new Raum("Sie sind im Gaestezimmer");
-        keller= new Raum("Sie sind im Keller");
-        geheimgang= new Raum("Sie sind im Geheimgang");
-        piratenhöhle= new Raum("Sie sind in der Piratenhöhle");
+        lichtung = new Raum ("auf einer Lichtung, umgeben von dunklen Tannen");
+        waldstueck = new Raum ("im dunklen Wald");
+        taverne = new Raum ("in der Taverne, mit zwielichtigen Gestalten an der Theke");
+        hexenhaus = new Raum ("im Hexenhaus");
+        dorfplatz = new Raum ("auf dem Dorfplatz");
+        gaestezimmer= new Raum ("Sie sind im Gaestezimmer");
+        keller= new Raum ("Sie sind im Keller");
+        geheimgang= new Raum ("Sie sind im Geheimgang");
+        piratenhöhle= new Raum ("Sie sind in der Piratenhöhle");
         
         // die Ausgaenge initialisieren
         lichtung.setzeAusgaenge(null, null, null, waldstueck,null,null);
@@ -154,25 +154,8 @@ public class Spiel
         String richtung = befehl.gibZweitesWort();
 
         // Wir versuchen den Raum zu verlassen.
-        Raum naechsterRaum = null;
-        if(richtung.equals("north")) {
-            naechsterRaum = aktuellerRaum.getNordausgang();
-        }
-        if(richtung.equals("east")) {
-            naechsterRaum = aktuellerRaum.getOstausgang();
-        }
-        if(richtung.equals("south")) {
-            naechsterRaum = aktuellerRaum.getSuedausgang();
-        }
-        if(richtung.equals("west")) {
-            naechsterRaum = aktuellerRaum.getWestausgang();
-        }
-        if(richtung.equals("down")) {
-            naechsterRaum = aktuellerRaum.getDowntreppe();
-        }
-        if(richtung.equals("up")) {
-        naechsterRaum = aktuellerRaum.getUptreppe();
-        }
+        Raum  naechsterRaum = null;
+        naechsterRaum=this.aktuellerRaum.getAusgang(richtung);
 
         if (naechsterRaum == null) {
             System.out.println("Dort ist keine Tuer!");
@@ -201,19 +184,9 @@ public class Spiel
     }
     private void RaumInfoAusgeben(){
         System.out.print("Ausgaenge: ");
-        if(aktuellerRaum.getNordausgang() != null)
-            System.out.print("north ");
-        if(aktuellerRaum.getOstausgang() != null)
-            System.out.print("east ");
-        if(aktuellerRaum.getSuedausgang() != null)
-            System.out.print("south ");
-        if(aktuellerRaum.getWestausgang() != null)
-            System.out.print("west ");
-        if(aktuellerRaum.getUptreppe() != null)
-            System.out.print("up ");
-        if(aktuellerRaum.getDowntreppe() != null)
-            System.out.print("down ");
-        System.out.println();
+        String ausgaenge= this.aktuellerRaum.ausgaengeToString( "norden",  "osten",
+                 "sueden",  "westen",  "up",  "down");
+
 
     }
 }
