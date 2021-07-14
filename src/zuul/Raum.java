@@ -71,24 +71,22 @@ public  Raum getAusgang(String richtung) {
      *
      *
      */
+    public HashMap<String, Raum> getAusgaenge(String richtung, Raum nachbar) {
 
+        ausgaenge.put("richtung",nachbar );
 
-    public void setzeAusgaenge(Raum norden, Raum osten,
-                               Raum sueden, Raum westen, Raum up, Raum down)
-    {
-        if(norden != null)
-            nordausgang = norden;
-        if(osten != null)
-            ostausgang = osten;
-        if(sueden != null)
-            suedausgang = sueden;
-        if(westen != null)
-            westausgang = westen;
-        if(up != null)
-            uptreppe = up;
-        if(down != null)
-            downtreppe = down;
+        Raum r=ausgaenge.get("richtung");
+
+        for(String s: ausgaenge.keySet()) {
+            System.out.println(s); }
+
+        return ausgaenge;
     }
+
+
+
+
+
 
     public  String ausgaengeToString() {
        String ho = new String();

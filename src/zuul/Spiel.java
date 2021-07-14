@@ -51,15 +51,15 @@ public class Spiel
         piratenhöhle= new Raum ("Sie sind in der Piratenhöhle");
         
         // die Ausgaenge initialisieren
-        lichtung.setzeAusgaenge(null, null, null, waldstueck,null,null);
-        waldstueck.setzeAusgaenge(null, lichtung, dorfplatz, null,null,null);
-        taverne.setzeAusgaenge(dorfplatz, null, null, null,gaestezimmer,keller);
-        hexenhaus.setzeAusgaenge(null, dorfplatz, null, null,null,null);
-        dorfplatz.setzeAusgaenge(waldstueck, null, taverne, hexenhaus,null,null);
-        gaestezimmer.setzeAusgaenge(null,null,null,null,null,taverne);
-        keller.setzeAusgaenge(null,null,null,null,taverne,null);
-        piratenhöhle.setzeAusgaenge(null,null,null,geheimgang,null,null);
-        geheimgang.setzeAusgaenge(null,piratenhöhle,keller,null,null,null);
+        lichtung.setAusgang(null, null, null, waldstueck,null,null);
+        waldstueck.setAusgang(null, lichtung, dorfplatz, null,null,null);
+        taverne.setAusgang(dorfplatz, null, null, null,gaestezimmer,keller);
+        hexenhaus.setAusgang(null, dorfplatz, null, null,null,null);
+        dorfplatz.setAusgang(waldstueck, null, taverne, hexenhaus,null,null);
+        gaestezimmer.setAusgang(null,null,null,null,null,taverne);
+        keller.setAusgang(null,null,null,null,taverne,null);
+        piratenhöhle.setAusgang(null,null,null,geheimgang,null,null);
+        geheimgang.setAusgang(null,piratenhöhle,keller,null,null,null);
         aktuellerRaum = lichtung;
         // das Spiel startet auf der Lichtung
     }
