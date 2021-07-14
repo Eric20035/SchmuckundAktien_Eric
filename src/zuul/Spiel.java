@@ -182,11 +182,12 @@ public class Spiel
             return true;  // Das Spiel soll beendet werden.
         }
     }
-    private void RaumInfoAusgeben(){
-        System.out.print("Ausgaenge: ");
-        String ausgaenge= this.aktuellerRaum.ausgaengeToString( "norden",  "osten",
-                 "sueden",  "westen",  "up",  "down");
+    private String RaumInfoAusgeben(){
+        System.out.print("Ausgaenge sind: ");
 
+        String ausgaenge= this.aktuellerRaum.ausgaengeToString();
+        System.out.println(ausgaenge);
 
+        return null;
     }
 }

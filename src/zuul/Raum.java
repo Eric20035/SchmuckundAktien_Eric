@@ -12,15 +12,18 @@
  */
 package zuul;
 
-public class Raum 
+import java.util.HashMap;
+
+public class Raum
 {
     private String beschreibung;
-    private Raum nordausgang;
-    private Raum suedausgang;
-    private Raum ostausgang;
-    private Raum westausgang;
-    private Raum uptreppe;
-    private Raum downtreppe;
+    private  Raum nordausgang;
+    private  Raum suedausgang;
+    private  Raum ostausgang;
+    private  Raum westausgang;
+    private  Raum uptreppe;
+    private  Raum downtreppe;
+    HashMap<String, Raum> ausgaenge;
 
     /**
      * Erzeuge einen Raum mit einer Beschreibung. Ein Raum
@@ -87,28 +90,30 @@ public  Raum getAusgang(String richtung) {
             downtreppe = down;
     }
 
-    public String ausgaengeToString() {
-        String ausgaenge="";
-        if(norden != null) {
-            ausgaenge=ausgaenge+"north";
+    public  String ausgaengeToString() {
+       String ho = new String();
+
+        if(nordausgang != null) {
+            //ausgaenge=ausgaenge+("north");
+           ho= ho+"north ";
         }
-        if(osten != null) {
-            System.out.println("east");
+        if(ostausgang != null) {
+            ho= ho+"east ";
         }
-        if(sueden != null) {
-            System.out.println("south");
+        if(suedausgang != null) {
+            ho= ho+"south ";
         }
-        if(westen != null) {
-            System.out.println("west");
+        if(westausgang != null) {
+            ho= ho+"west ";
         }
-        if(up != null) {
-            System.out.println("up");
+        if(uptreppe != null) {
+            ho= ho+"up ";
         }
-        if(down != null) {
-            System.out.println("down");
+        if(downtreppe != null) {
+            ho= ho+"down ";
         }
 
-
+        return ho;
     }
 
 
