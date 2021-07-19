@@ -37,7 +37,7 @@ public class Spiel
      */
     private void raeumeAnlegen()
     {
-         Raum lichtung, waldstueck, taverne, hexenhaus, dorfplatz, gaestezimmer, keller, geheimgang, piratenhöhle;
+         Raum lichtung, waldstueck, taverne, hexenhaus, dorfplatz, gaestezimmer,window, keller, geheimgang, piratenhöhle;
       
         // die Raeume erzeugen
         lichtung = new Raum ("auf einer Lichtung, umgeben von dunklen Tannen");
@@ -51,15 +51,23 @@ public class Spiel
         piratenhöhle= new Raum ("Sie sind in der Piratenhöhle");
         
         // die Ausgaenge initialisieren
-        lichtung.setAusgang(null, null, null, waldstueck,null,null);
-        waldstueck.setAusgang(null, lichtung, dorfplatz, null,null,null);
-        taverne.setAusgang(dorfplatz, null, null, null,gaestezimmer,keller);
-        hexenhaus.setAusgang(null, dorfplatz, null, null,null,null);
-        dorfplatz.setAusgang(waldstueck, null, taverne, hexenhaus,null,null);
-        gaestezimmer.setAusgang(null,null,null,null,null,taverne);
-        keller.setAusgang(null,null,null,null,taverne,null);
-        piratenhöhle.setAusgang(null,null,null,geheimgang,null,null);
-        geheimgang.setAusgang(null,piratenhöhle,keller,null,null,null);
+        lichtung.setAusgang("down", piratenhöhle);
+        lichtung.setAusgang("west" ,waldstueck);
+        taverne.setAusgang("window",dorfplatz);
+        waldstueck.setAusgang("east" , lichtung);
+        waldstueck.setAusgang("south" , dorfplatz);
+        dorfplatz.setAusgang("south" ,taverne);
+        dorfplatz.setAusgang("west" ,hexenhaus);
+        taverne.setAusgang("up" , gaestezimmer);
+        taverne.setAusgang("down" , keller);
+        gaestezimmer.setAusgang("down" , taverne);
+        keller.setAusgang("up" , taverne);
+        keller.setAusgang("north" , geheimgang);
+        geheimgang.setAusgang("south" , keller);
+        geheimgang.setAusgang("east" , piratenhöhle);
+        piratenhöhle.setAusgang("up" , lichtung);
+        piratenhöhle.setAusgang("west" , geheimgang);
+
         aktuellerRaum = lichtung;
         // das Spiel startet auf der Lichtung
     }
@@ -155,7 +163,7 @@ public class Spiel
 
         // Wir versuchen den Raum zu verlassen.
         Raum  naechsterRaum = null;
-        naechsterRaum=this.aktuellerRaum.getAusgang(richtung);
+        naechsterRaum=this.aktuellerRaum.getAusgaenge(richtung);
 
         if (naechsterRaum == null) {
             System.out.println("Dort ist keine Tuer!");
@@ -188,6 +196,6 @@ public class Spiel
         String ausgaenge= this.aktuellerRaum.ausgaengeToString();
         System.out.println(ausgaenge);
 
-        return null;
+        return ausgaenge;
     }
 }

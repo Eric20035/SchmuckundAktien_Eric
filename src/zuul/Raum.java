@@ -23,7 +23,7 @@ public class Raum
     private  Raum westausgang;
     private  Raum uptreppe;
     private  Raum downtreppe;
-    HashMap<String, Raum> ausgaenge;
+    private HashMap<String, Raum> ausgaenge;
 
     /**
      * Erzeuge einen Raum mit einer Beschreibung. Ein Raum
@@ -31,56 +31,39 @@ public class Raum
      * @param beschreibung enthält eine Beschreibung in der Form
      *        "in einer Küche" oder "auf einem Sportplatz".
      */
-    public Raum(String beschreibung) 
+    public Raum(String beschreibung)
     {
         this.beschreibung = beschreibung;
+        this.ausgaenge= new HashMap<>();
     }
 
 
-public  Raum getAusgang(String richtung) {
 
-    if (richtung.equals("north")){
-        return nordausgang;
-    }
-    if (richtung.equals("south")){
-        return suedausgang;
-    }
-    if (richtung.equals("west")){
-        return westausgang;
-    }
-    if (richtung.equals("east")){
-        return ostausgang;
-    }
-    if (richtung.equals("up")){
-        return uptreppe;
-    }
-    if (richtung.equals("down")){
-        return downtreppe;
-    }
-    return null;
+
+    public void setAusgang(String richtung, Raum nachbar) {
+    ausgaenge.put(richtung,nachbar);
 }
 
     /**
      * Definiere die Ausgaenge dieses Raums. Jede Richtung
      * f�hrt entweder in einen anderen Raum oder ist 'null'
      * (kein Ausgang).
-     * @param norden Der Nordeingang.
-     * @param osten Der Osteingang.
-     * @param sueden Der Suedeingang.
-     * @param westen Der Westeingang.
+    // * @param norden Der Nordeingang.
+    // * @param osten Der Osteingang.
+    // * @param sueden Der Suedeingang.
+    // * @param westen Der Westeingang.
      *
      *
      */
-    public HashMap<String, Raum> getAusgaenge(String richtung, Raum nachbar) {
+    public Raum getAusgaenge(String richtung) {
 
-        ausgaenge.put("richtung",nachbar );
 
-        Raum r=ausgaenge.get("richtung");
 
-        for(String s: ausgaenge.keySet()) {
-            System.out.println(s); }
+        Raum r=ausgaenge.get(richtung);
 
-        return ausgaenge;
+
+
+        return r;
     }
 
 
@@ -88,30 +71,12 @@ public  Raum getAusgang(String richtung) {
 
 
 
-    public  String ausgaengeToString() {
-       String ho = new String();
-
-        if(nordausgang != null) {
-            //ausgaenge=ausgaenge+("north");
-           ho= ho+"north ";
+    public String ausgaengeToString() {
+        String richtungen = "";
+        for(String richtungFuerDenAktuellenEintragAusHashmap: ausgaenge.keySet()) {
+            richtungen += richtungFuerDenAktuellenEintragAusHashmap + " ";
         }
-        if(ostausgang != null) {
-            ho= ho+"east ";
-        }
-        if(suedausgang != null) {
-            ho= ho+"south ";
-        }
-        if(westausgang != null) {
-            ho= ho+"west ";
-        }
-        if(uptreppe != null) {
-            ho= ho+"up ";
-        }
-        if(downtreppe != null) {
-            ho= ho+"down ";
-        }
-
-        return ho;
+        return richtungen;
     }
 
 
